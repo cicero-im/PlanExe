@@ -52,7 +52,7 @@ class ReportGenerator:
         try:
             # First try to detect the delimiter by reading the first few lines
             with open(file_path, 'r') as f:
-                first_line = f.readline().strip()
+                first_line = f.readline(5_000_000).strip()
                 
             # Count potential delimiters
             delimiters = {
