@@ -2,10 +2,11 @@
 Multi-user experiment. User data is isolated from other users.
 untested on Hugging Face Spaces.
 """
-import random
 import string
 import gradio as gr
 import time
+import secrets
+
 with gr.Blocks() as demo:
     gr.Markdown("Your Username and Password will get saved in the browser's local storage. "
                 "If you refresh the page, the values will be retained.")
@@ -17,8 +18,8 @@ with gr.Blocks() as demo:
 
     @btn.click(outputs=[username, password])
     def generate_randomly():
-        u = "".join(random.choices(string.ascii_letters + string.digits, k=10))
-        p = "".join(random.choices(string.ascii_letters + string.digits, k=10))
+        u = "".join(secrets.SystemRandom().choices(string.ascii_letters + string.digits, k=10))
+        p = "".join(secrets.SystemRandom().choices(string.ascii_letters + string.digits, k=10))
         return u, p
 
     @demo.load(inputs=[local_storage], outputs=[username, password])
