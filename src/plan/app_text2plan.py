@@ -27,6 +27,7 @@ from src.utils.get_env_as_string import get_env_as_string
 from src.huggingface_spaces.is_huggingface_spaces import is_huggingface_spaces
 from src.huggingface_spaces.huggingface_spaces_browserstate_secret import huggingface_spaces_browserstate_secret
 from src.utils.time_since_last_modification import time_since_last_modification
+from security import safe_command
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
@@ -303,16 +304,14 @@ def run_planner(submit_or_retry_button, plan_prompt, browser_state, session_stat
     command = [sys.executable, "-m", MODULE_PATH_PIPELINE]
     print(f"Executing command: {' '.join(command)}")
     if RELAY_PROCESS_OUTPUT:
-        session_state.active_proc = subprocess.Popen(
-            command,
+        session_state.active_proc = safe_command.run(subprocess.Popen, command,
             cwd=".",
             env=env,
             stdout=None,
             stderr=None
         )
     else:
-        session_state.active_proc = subprocess.Popen(
-            command,
+        session_state.active_proc = safe_command.run(subprocess.Popen, command,
             cwd=".",
             env=env,
             stdout=subprocess.DEVNULL,
