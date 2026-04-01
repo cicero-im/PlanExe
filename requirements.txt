@@ -78,7 +78,7 @@ propcache==0.2.1
 pydantic==2.10.4
 pydantic_core==2.27.2
 pydub==0.25.1
-Pygments==2.19.1
+Pygments==2.20.0
 pypdf==5.1.0
 python-daemon==3.1.2
 python-dateutil==2.9.0.post0
