@@ -73,7 +73,7 @@ openai==1.59.5
 orjson==3.10.14
 packaging==24.2
 pandas==2.2.3
-pillow==11.1.0
+pillow==12.2.0
 propcache==0.2.1
 pydantic==2.10.4
 pydantic_core==2.27.2
